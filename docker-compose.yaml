@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./api_mongo
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_DBNAME=db_sante
+    depends_on:
+      - mongo
+    networks:
+      - mongodb_net
+
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mongodb_net
+
+volumes:
+  mongo-data:
+
+networks:
+  mongodb_net:
