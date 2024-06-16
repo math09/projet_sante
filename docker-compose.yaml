@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  app:
+  app_mongo:
     build:
       context: ./api_mongo
     ports:
@@ -16,6 +16,20 @@ services:
     networks:
       - mongodb_net
 
+  app_mysql:
+    build:
+      context: ./api_mysql
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - SQLALCHEMY_DATABASE_URI=mysql+mysqlconnector://root:rootpassword@mysql/projet_sante
+    depends_on:
+      - mysql
+    networks:
+      - mysql_net
+
   mongo:
     image: mongo:4.4
     ports:
@@ -25,8 +39,23 @@ services:
     networks:
       - mongodb_net
 
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: projet_sante
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - mysql_net
+
 volumes:
   mongo-data:
+  mysql-data:
 
 networks:
   mongodb_net:
+  mysql_net:
