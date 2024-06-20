@@ -11,7 +11,7 @@ export default {
 <template>
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 sm:-translate-y-[70%] -translate-y-[50%]">
     <div class="flex justify-center">
-      <img src="../assets/logo.png" class="w-100 sm:w-[70%]"/>
+      <img src="@/assets/logo.png" class="w-100 sm:w-[70%]"/>
     </div>
 
     <div class="flex justify-center gap-20 mt-20 sm:flex-row flex-col">
