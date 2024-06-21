@@ -14,7 +14,7 @@
             <td class="border border-gray-300 p-4" :class="{' rounded-bl-xl': isLastRow(index, persons.length)}">{{ person.nom }}</td>
             <td class="border border-gray-300 p-4">{{ person.prenom }}</td>
             <td class="border border-gray-300 p-4">{{ person.age }}</td>
-            <td class="border border-gray-300 p-4" :class="{' rounded-br-xl': isLastRow(index, persons.length)}">{{ person.numSecu }}</td>
+            <td class="border border-gray-300 p-4" :class="{' rounded-br-xl': isLastRow(index, persons.length)}">{{ person.num_secu }}</td>
           </tr>
         </tbody>
       </table>
