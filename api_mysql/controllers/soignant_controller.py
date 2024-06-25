@@ -1,5 +1,6 @@
 from models.soignant import Soignant
 from app import db
+from werkzeug.security import check_password_hash
 
 def get_all_soignants():
     return Soignant.query.all()
@@ -25,3 +26,9 @@ def delete_soignant(id_medecin):
     db.session.delete(soignant)
     db.session.commit()
     return soignant
+
+def verify_soignant(nom, prenom, mdp):
+    soignant = Soignant.query.filter_by(nom=nom, prenom=prenom).first()
+    if soignant and check_password_hash(soignant.mdp, mdp):
+        return soignant
+    return None
