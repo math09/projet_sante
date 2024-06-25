@@ -7,17 +7,11 @@ class Medicament(db.Model):
     nom_medicament = Column(String(50))
     ref_medicament = Column(String(100))
     molecule = Column(String(50))
-    date_debut = Column(DateTime)
-    date_fin = Column(DateTime)
-    periodicite = Column(String(50))
 
     def to_dict(self):
         return {
             'id_medicament': self.id_medicament,
             'nom_medicament': self.nom_medicament,
             'ref_medicament': self.ref_medicament,
-            'molecule': self.molecule,
-            'date_debut': self.date_debut.isoformat(),
-            'date_fin': self.date_fin.isoformat(),
-            'periodicite': self.periodicite,
+            'molecule': self.molecule
         }
