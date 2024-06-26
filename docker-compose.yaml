@@ -58,7 +58,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - mysql
+      - app_mongo
     networks:
       - mongodb_net
 
