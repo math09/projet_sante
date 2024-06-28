@@ -43,10 +43,9 @@ def remove_soignant(id_medecin):
 @soignant_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    nom = data.get('nom')
-    prenom = data.get('prenom')
+    email = data.get('email')
     mdp = data.get('mdp')
-    soignant = verify_soignant(nom, prenom, mdp)
+    soignant = verify_soignant(email, mdp)
     if soignant:
         return jsonify(soignant.to_dict())
     return jsonify({'error': 'Invalid credentials'}), 401

@@ -27,8 +27,8 @@ def delete_soignant(id_medecin):
     db.session.commit()
     return soignant
 
-def verify_soignant(nom, prenom, mdp):
-    soignant = Soignant.query.filter_by(nom=nom, prenom=prenom).first()
+def verify_soignant(email, mdp):
+    soignant = Soignant.query.filter_by(email=email).first()
     if soignant and check_password_hash(soignant.mdp, mdp):
         return soignant
     return None

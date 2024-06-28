@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from controllers.patient_controller import (
-    get_all_patients, get_patient_by_id,
+    get_all_patients, get_patient_by_id, get_patient_by_value,
     create_patient, update_patient, delete_patient
 )
 
@@ -17,6 +17,17 @@ def get_patient(num_secu):
     if patient is None:
         return jsonify({'error': 'Patient not found'}), 404
     return jsonify(patient.to_dict())
+
+@patient_bp.route('/patients/search/<value>', methods=['GET'])
+def get_patient_value(value):
+    patients = get_patient_by_value(value)
+    result = [{
+    'num_secu': patient.num_secu,
+    'prenom': patient.prenom,
+    'nom': patient.nom,
+    'date_naissance': patient.date_naissance.isoformat()
+    } for patient in patients]
+    return jsonify(result)
 
 @patient_bp.route('/patients', methods=['POST'])
 def add_patient():
