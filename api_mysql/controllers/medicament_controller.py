@@ -4,8 +4,10 @@ from app import db
 def get_all_medicaments():
     return Medicament.query.all()
 
-def get_medicament_by_id(id_medicament):
-    return Medicament.query.get(id_medicament)
+def get_medicament_by_value(value):
+    return Medicament.query.filter((Medicament.id_medicament == value) | (Medicament.nom_medicament == value) | 
+                                   (Medicament.ref_medicament == value) | (Medicament.molecule == value)).all()
+
 
 def create_medicament(data):
     new_medicament = Medicament(**data)

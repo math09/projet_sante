@@ -7,6 +7,9 @@ def get_all_patients():
 def get_patient_by_id(num_secu):
     return Patient.query.get(num_secu)
 
+def get_patient_by_value(value):
+    return Patient.query.filter((Patient.num_secu == value) | (Patient.nom == value) | (Patient.prenom == value)).all()
+
 def create_patient(data):
     new_patient = Patient(**data)
     db.session.add(new_patient)

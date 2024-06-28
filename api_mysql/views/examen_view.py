@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from controllers.examen_controller import (
-    get_all_examens, get_examen_by_id,
+    get_all_examens, get_examen_by_id, get_examens_by_patient_id,
     create_examen, update_examen, delete_examen
 )
 
@@ -17,6 +17,11 @@ def get_examen(id_examens):
     if examen is None:
         return jsonify({'error': 'Examen not found'}), 404
     return jsonify(examen.to_dict())
+
+@examen_bp.route('/examens/patient/<int:id_patient>', methods=['GET'])
+def get_examen_patient(id_patient):
+    examens = get_examens_by_patient_id(id_patient)
+    return jsonify([examen.to_dict() for examen in examens])
 
 @examen_bp.route('/examens', methods=['POST'])
 def add_examen():

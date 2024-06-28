@@ -7,6 +7,9 @@ def get_all_examens():
 def get_examen_by_id(id_examens):
     return Examen.query.get(id_examens)
 
+def get_examens_by_patient_id(id_patient):
+    return Examen.query.filter_by(id_patient=id_patient).all()
+
 def create_examen(data):
     new_examen = Examen(**data)
     db.session.add(new_examen)
