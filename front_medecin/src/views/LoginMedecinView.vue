@@ -31,7 +31,7 @@ export default {
           <img src="@/assets/logo.png" class="w-100 sm:w-[70%]"/>
         </div>
   
-        <div class="flex justify-center gap-5 mt-20 flex-col items-center">
+        <div class="flex flex-col items-center justify-center gap-5 mt-20">
             <InputComponent id="email" label="Adresse mail" v-model="email" type="email" class="w-[50%]"/>
             <InputComponent id="password" label="Mot de passe" v-model="password" type="password" class="w-[50%]"/>
             <PrimaryButton @click="submitForm" class="mt-10">Se connecter</PrimaryButton>

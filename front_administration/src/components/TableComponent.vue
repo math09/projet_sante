@@ -1,20 +1,20 @@
 <template>
-  <div class="bg-white p-5 rounded-3xl h-full flex overflow-auto">
-    <table class="w-full border-separate rounded-xl h-fit table-auto">
+  <div class="flex h-full p-5 overflow-auto bg-white rounded-3xl">
+    <table class="w-full border-separate table-auto rounded-xl h-fit">
         <thead>
           <tr>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left rounded-tl-xl">Nom</th>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left">Prénom</th>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left">Date de naissance</th>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left rounded-tr-xl">Numéro de sécurité sociale</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300 rounded-tl-xl">Nom</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300">Prénom</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300">Date de naissance</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300 rounded-tr-xl">Numéro de sécurité sociale</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(person, index) in persons" :key="index" :class="{'bg-gray-100': index % 2 === 0, 'bg-gray-50': index % 2 !== 0, 'bg-gradient-to-r from-teal-500 to-teal-300 text-white': selectedRow === index}"  @click="selectRow(index)">
-            <td class="border border-gray-300 p-4" :class="{' rounded-bl-xl': isLastRow(index, persons.length)}">{{ person.nom }}</td>
-            <td class="border border-gray-300 p-4">{{ person.prenom }}</td>
-            <td class="border border-gray-300 p-4">{{ person.age }}</td>
-            <td class="border border-gray-300 p-4" :class="{' rounded-br-xl': isLastRow(index, persons.length)}">{{ person.num_secu }}</td>
+            <td class="p-4 border border-gray-300" :class="{' rounded-bl-xl': isLastRow(index, persons.length)}">{{ person.nom }}</td>
+            <td class="p-4 border border-gray-300">{{ person.prenom }}</td>
+            <td class="p-4 border border-gray-300">{{ person.age }}</td>
+            <td class="p-4 border border-gray-300" :class="{' rounded-br-xl': isLastRow(index, persons.length)}">{{ person.num_secu }}</td>
           </tr>
         </tbody>
       </table>

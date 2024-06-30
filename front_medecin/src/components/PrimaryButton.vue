@@ -1,6 +1,6 @@
 <template>
     <button
-      class="w-full py-0.25 bg-gradient-to-r from-emerald-500 to-tropical-rain-forest-700 shadow-xl rounded-md text-x0.5 font-bold text-white"
+      class="w-full bg-gradient-to-r from-emerald-500 to-tropical-rain-forest-700 shadow-xl rounded-md text-x0.5 font-bold"
       :class="buttonClass"
       :disabled="disabled"
     >

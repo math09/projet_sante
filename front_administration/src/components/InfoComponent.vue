@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-white p-8 rounded-3xl h-full flex overflow-auto w-full">
+  <div class="flex w-full h-full p-8 overflow-auto bg-white rounded-3xl">
     <div v-if="data || create" class="w-full">
-      <div class="flex flex-col gap-2 text-lg w-full" v-if="!modify && !create">
+      <div class="flex flex-col w-full gap-2 text-lg" v-if="!modify && !create">
         <div class="flex justify-between">
-          <h2 class="font-bold text-xl underline">Patient</h2>
+          <h2 class="text-xl font-bold underline">Patient</h2>
           <PrimaryButton @click="editButton" buttonClass="!shadow-none px-4">
             <EditIcon/>
           </PrimaryButton>
@@ -27,44 +27,44 @@
         <p class="font-semibold">Pays : <span class="font-normal">{{ data.pays }}</span></p>
         <p class="font-semibold">Mobile : <span class="font-normal">{{ data.num_telephone }}</span></p>
         <p class="font-semibold">Email : <span class="font-normal">{{ data.email }}</span></p>
-        <div class="text-center mt-8">
-          <h3 class="font-bold text-xl underline">Personne à contacter</h3>
+        <div class="mt-8 text-center">
+          <h3 class="text-xl font-bold underline">Personne à contacter</h3>
         </div>
         <p class="font-semibold">Nom : <span class="font-normal">{{ data.nom_contact }}</span></p>
         <p class="font-semibold">Prénom : <span class="font-normal">{{ data.prenom_contact }}</span></p>
         <p class="font-semibold">Mobile : <span class="font-normal">{{ data.num_contact }}</span></p>
       </div>
-      <div class="flex flex-col gap-2 text-lg mb-8" v-else>
+      <div class="flex flex-col gap-2 mb-8 text-lg" v-else>
         <div class="flex justify-between">
-          <h2 class="font-bold text-xl underline">{{ create ? "Nouveau patient" : "Patient" }}</h2>
+          <h2 class="text-xl font-bold underline">{{ create ? "Nouveau patient" : "Patient" }}</h2>
           <PrimaryButton buttonClass="!shadow-none">
             Valider
           </PrimaryButton>
         </div>
-        <InputComponent id="nom" label="Nom" type="text" v-model="formData.nom" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="prenom" label="Prénom" type="text" v-model="formData.prenom" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="date_naissance" label="Date de naissance" type="text" v-model="formData.date_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="lieu_de_naissance" label="Lieu de naissance" type="text" v-model="formData.lieu_de_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="num_secu" label="Numéro sécurité sociale" type="text" v-model="formData.num_secu" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="num_mutuelle" label="Numéro mutuelle" type="text" v-model="formData.num_mutuelle" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="nom_mutuelle" label="Nom mutuelle" type="text" v-model="formData.nom_mutuelle" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="adresse" label="Adresse" type="text" v-model="formData.adresse" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="code_postal" label="Code postale" type="text" v-model="formData.code_postal" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="ville" label="Ville" type="text" v-model="formData.ville" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="etat" label="Etat/Province" type="text" v-model="formData.etat" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="pays" label="Pays" type="text" v-model="formData.pays" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="num_telephone" label="Mobile" type="text" v-model="formData.num_telephone" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="email" label="Email" type="text" v-model="formData.email" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="nom" label="Nom" type="text" v-model="formData.nom" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="prenom" label="Prénom" type="text" v-model="formData.prenom" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="date_naissance" label="Date de naissance" type="text" v-model="formData.date_naissance" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="lieu_de_naissance" label="Lieu de naissance" type="text" v-model="formData.lieu_de_naissance" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="num_secu" label="Numéro sécurité sociale" type="text" v-model="formData.num_secu" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="num_mutuelle" label="Numéro mutuelle" type="text" v-model="formData.num_mutuelle" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="nom_mutuelle" label="Nom mutuelle" type="text" v-model="formData.nom_mutuelle" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="adresse" label="Adresse" type="text" v-model="formData.adresse" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="code_postal" label="Code postale" type="text" v-model="formData.code_postal" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="ville" label="Ville" type="text" v-model="formData.ville" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="etat" label="Etat/Province" type="text" v-model="formData.etat" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="pays" label="Pays" type="text" v-model="formData.pays" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="num_telephone" label="Mobile" type="text" v-model="formData.num_telephone" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="email" label="Email" type="text" v-model="formData.email" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
         
-        <div class="text-center mt-8">
-          <h3 class="font-bold text-xl underline">Personne à contacter</h3>
+        <div class="mt-8 text-center">
+          <h3 class="text-xl font-bold underline">Personne à contacter</h3>
         </div>
-        <InputComponent id="nom_contact" label="Nom" type="text" v-model="formData.nom_contact" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="prenom_contact" label="Prénom" type="text" v-model="formData.prenom_contact" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="num_contact" label="Mobile" type="text" v-model="formData.num_contact" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="nom_contact" label="Nom" type="text" v-model="formData.nom_contact" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="prenom_contact" label="Prénom" type="text" v-model="formData.prenom_contact" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="num_contact" label="Mobile" type="text" v-model="formData.num_contact" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
       </div>
     </div>
-    <div class="flex justify-center items-center w-full" v-else>
+    <div class="flex items-center justify-center w-full" v-else>
       <p class="w-fit">Veuillez sélectionner un patient pour voir ces informations.</p>
     </div>
   </div>
