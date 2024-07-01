@@ -1,5 +1,5 @@
 <template>
-<div class="grid grid-cols-3 h-12 rounded-3xl">
+<div class="grid h-full grid-cols-3 p-2 overflow-auto bg-white h-grid rounded-3xl">
   
   <div class="col-span-3 text-center">
     <h4 class="font-semibold underline"><strong>Information</strong></h4>
@@ -9,7 +9,7 @@
   <p class="w-auto font-semibold">Age : <span class="font-normal">{{ getAge(person.date_naissance) }}</span></p>
   
     <p class="w-auto font-semibold">Date de naissance : <span class="font-normal">{{ person.date_naissance }}</span></p>
-    <p class="w-auto font-semibold col-span-2">Lieu de naissance : <span class="font-normal">{{ person.lieu_de_naissance }}</span></p>
+    <p class="w-auto col-span-2 font-semibold">Lieu de naissance : <span class="font-normal">{{ person.lieu_de_naissance }}</span></p>
   
     <p class="w-auto font-semibold">Numéro sécurité sociale : <span class="font-normal">{{ person.num_secu }}</span></p>
     <p class="w-auto font-semibold">Numéro mutuelle : <span class="font-normal">{{ person.num_mutuelle }}</span></p>
@@ -20,17 +20,17 @@
     <p class="w-auto font-semibold">Pays : <span class="font-normal">{{ person.pays }}</span></p>
  
     <p class="w-auto font-semibold">Mobile : <span class="font-normal">{{ person.num_telephone }}</span></p>
-    <p class="w-auto font-semibold col-span-2">Email : <span class="font-normal">{{ person.email }}</span></p>
+    <p class="w-auto col-span-2 font-semibold">Email : <span class="font-normal">{{ person.email }}</span></p>
   
-  <div class="text-center col-span-3">
+  <div class="col-span-3 text-center">
     <h3 class="font-semibold underline"><strong>Personne à contacter</strong></h3>
   </div>
     <p class="w-auto font-semibold">Nom : <span class="font-normal">{{ person.personneAContacter.nom_contact }}</span></p>
-    <p class="w-auto font-semibold col-span-2">Prénom : <span class="font-normal">{{ person.personneAContacter.prenom_contact }}</span></p>
+    <p class="w-auto col-span-2 font-semibold">Prénom : <span class="font-normal">{{ person.personneAContacter.prenom_contact }}</span></p>
   
     <p class="w-auto font-semibold">Mobile : <span class="font-normal">{{ person.personneAContacter.num_contact }}</span></p>
 
-  <div class="text-center col-span-3">
+  <div class="col-span-3 text-center">
     <h4 class="font-semibold underline"><Strong>Autre</Strong></h4>
   </div>
   
@@ -39,7 +39,7 @@
   
     <p class="font-semibold">Mobile : <span class="font-normal">{{ person.autre.allergie }}</span></p>
   
-    <div class="text-center col-span-3">
+    <div class="col-span-3 text-center">
       <h4 class="w-auto font-semibold underline"><Strong>Dernière constante :</Strong></h4>
   </div>
   

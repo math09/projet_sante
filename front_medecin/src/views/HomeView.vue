@@ -3,6 +3,8 @@ import BaseLayout from '@/layouts/BaseLayout.vue';
 import PrimaryButton from '@/components/PrimaryButton.vue';
 import ListPatient from '@/components/ListPatient.vue';
 import InfoPatient from '@/components/InfoPatient.vue';
+import ExamensPatient from '@/components/ExamensPatient.vue';
+import ConstantePatient from '@/components/ConstantePatient.vue';
 
 export default {
   name: 'HomeView',
@@ -10,7 +12,9 @@ export default {
     BaseLayout,
     PrimaryButton,
     ListPatient,
-    InfoPatient
+    InfoPatient,
+    ExamensPatient,
+    ConstantePatient
   },
   data() {
     return {
@@ -26,10 +30,16 @@ export default {
         { id: 3, nom: "PEYRAR", prenom: "Thibaut" },
         { id: 4, nom: "JOHN", prenom: "Smith" },
       ],
-      constantes: [
-        { id_patient: "5", frequence_cardiaque: "20", tension: "2", temperature: "38", groupe_sanguin: "O+", poids: "90", taille: "180", date_releve: "05/01/2003" }
+      examens: [
+        {id_examen: "1", id_patient: "5", motif: "Respire en lieu public", observation: "Ses poumons ont besoin d'air", 
+        diagnostic: "Prescription de médicament anti-respiration", resultat_analyse: "Respire", conclusion: "Doit arreter de respirer",
+        date: "11/11/1111 11:11:11.111" }
       ],
-      page: 1
+      constantes: [
+        { id_patient: "4", frequence_cardiaque: "20", tension: "2", temperature: "38", groupe_sanguin: "O+", poids: "90", taille: "180", date_releve: "05/01/2003" },
+        { id_constante: "1", id_patient: "5", frequence_cardiaque: "12", tension: "2", temperature: "37", groupe_sanguin: "O+", poids: "90", taille: "90", date_releve: "11/11/1111" }
+      ],
+      page: 3
     };
   },
   methods: {
@@ -44,7 +54,7 @@ export default {
 
 <template>
   <BaseLayout>
-    <div class="grid h-full grid-cols-5 gap-8">
+    <div class="grid h-full grid-cols-5 gap-6">
         
           <div class="flex-grow">
             <ListPatient :persons="persons"/>
@@ -64,8 +74,16 @@ export default {
             <PrimaryButton class="h-fit mx-0.5" @click="navBarre(4)" :buttonClass="{'bg-white bg-image-none text-black':page!=4, 'text-white':page==4}">Prescription</PrimaryButton>
           </div>
           
-          <div class="h-full p-2 bg-white rounded-md">
+          <div v-if="page==1" class="h-full">
             <InfoPatient :person="persons.find(person => person.id=5)"/>
+          </div>
+
+          <div v-if="page==2" class="h-full">
+            <ExamensPatient :examens="examens.filter(examen => examen.id_patient=5)"/>
+          </div>
+
+          <div v-if="page==3" class="h-full">
+            <ConstantePatient :constantes="constantes.filter(constante => constante.id_patient=5)"/>
           </div>
           
         </div>
