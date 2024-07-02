@@ -37,7 +37,7 @@
       <div class="flex flex-col gap-2 text-lg mb-8" v-else>
         <div class="flex justify-between">
           <h2 class="font-bold text-xl underline">{{ create ? "Nouveau patient" : "Patient" }}</h2>
-          <PrimaryButton buttonClass="!shadow-none">
+          <PrimaryButton buttonClass="!shadow-none" @click="createPatient">
             Valider
           </PrimaryButton>
         </div>
@@ -74,6 +74,8 @@
 import PrimaryButton from './PrimaryButton.vue';
 import EditIcon from './icons/EditIcon.vue';
 import InputComponent from './InputComponent.vue';
+import axios from '@/utils/axiosInterseptor'
+
 
 export default {
   props: {
@@ -112,6 +114,17 @@ export default {
     editButton(){
       this.$emit('update:modify');
       this.formData = this.data
+    },
+    async createPatient(){
+      if(this.modify == false){
+        await axios.post('/api/patient', this.formData).then((r)=>{
+          this.$emit('create:finish', r.data.lastId);
+        })
+      }else{
+        await axios.patch(`/api/patient/${this.data.id}`, this.formData).then(()=>{
+          this.$emit('create:finish', this.data.id);
+        });
+      }
     }
   },
   data() {

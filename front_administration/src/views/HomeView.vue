@@ -5,6 +5,8 @@ import PrimaryButton from '@/components/PrimaryButton.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import InfoComponent from '@/components/InfoComponent.vue';
 import TableComponent from '@/components/TableComponent.vue';
+import axios from '@/utils/axiosInterseptor'
+
 
 export default {
   name: 'HomeView',
@@ -23,6 +25,7 @@ export default {
         { id: 1, nom: "JEAN", prenom: "Anthony", age: "11/05/2003 (20 ans)", num_secu: "1 03 59 034 456" },
         { id: 2, nom: "SMITH", prenom: "John", age: "10/05/2003 (25 ans)", num_secu: "1 02 38 932 678" },
       ],
+      personSelected: null,
       selectedRow: null,
       sortBy: '',
       modifyInfo: false,
@@ -30,13 +33,21 @@ export default {
     };
   },
   methods: {
-    searchInDb() {
-      console.log('Search:', this.search);
+    async searchInDb() {
+      if (this.search.length >= 2) {
+        await axios.get(`/api/patient/search/${this.search}`).then((response) => {
+          this.persons = response.data;
+        });
+      }
     },
-    onRowSelected(index) {
+    async onRowSelected(index) {
       this.selectedRow = index;
       this.modifyInfo = false;
       this.createMode = false;
+
+      await axios.get(`/api/patient/${this.persons[this.selectedRow].id}`).then((response) => {
+        this.personSelected = response.data;
+      });
     },
     sortTable() {
       if (this.sortBy === 'nom') {
@@ -47,7 +58,7 @@ export default {
         this.persons.sort((a, b) => a.age.localeCompare(b.age));
       }
     },
-    newButton(){
+    newButton() {
       this.selectedRow = null;
       this.createMode = true;
     }
@@ -66,12 +77,14 @@ export default {
       <div class="col-span-2 overflow-hidden">
         <div class="flex flex-col h-full">
           <div class="flex justify-between  items-end">
-            <InputComponent id="search" label="Rechercher" type="text" class="w-[50%]" v-model="search" @input-c="searchInDb" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none">
-              <SearchIcon/>
+            <InputComponent id="search" label="Rechercher" type="text" class="w-[50%]" v-model="search"
+              @input-c="searchInDb" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none">
+              <SearchIcon />
             </InputComponent>
             <div class="flex flex-col">
               <label for="sortSelect" class="mb-2 font-semibold text-md">Trier par :</label>
-              <select id="sortSelect" v-model="sortBy" class="px-5 py-4 text-md border focus:outline-none rounded-2xl flex-grow bg-neutral-200 border-gray-50 focus:border-gray-300">
+              <select id="sortSelect" v-model="sortBy"
+                class="px-5 py-4 text-md border focus:outline-none rounded-2xl flex-grow bg-neutral-200 border-gray-50 focus:border-gray-300">
                 <option value="nom">Nom</option>
                 <option value="prenom">Prénom</option>
                 <option value="age">Date de naissance</option>
@@ -79,15 +92,16 @@ export default {
             </div>
             <PrimaryButton class="h-fit" buttonClass="!shadow-none" @click="newButton">Nouveau</PrimaryButton>
           </div>
-        
+
           <div class="mt-10 flex-grow overflow-auto">
-            <TableComponent :persons="persons" :selected-row="selectedRow" @row-selected="onRowSelected"/>
+            <TableComponent :persons="persons" :selected-row="selectedRow" @row-selected="onRowSelected" />
           </div>
         </div>
-        
+
       </div>
       <div class="h-full overflow-auto">
-        <InfoComponent :data="persons[selectedRow]" @update:modify="modifyInfo = true" :modify="modifyInfo" :create="createMode"/>
+        <InfoComponent :data="personSelected" @update:modify="modifyInfo = true" :modify="modifyInfo"
+          :create="createMode" @create:finish="onRowSelected"/>
       </div>
     </div>
 
