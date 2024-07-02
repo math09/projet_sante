@@ -1,15 +1,15 @@
 <script>
-import { Bar } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import { Line } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js'
 import PrimaryButton from '@/components/PrimaryButton.vue';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
 
 
 export default {
   components: {
     PrimaryButton,
-    Bar
+    Line
   },
   // props:{
   //   examens: {
@@ -28,8 +28,14 @@ export default {
   data() {
     return {
       chartData: {
-        labels: [ 'January', 'February', 'March' ],
-        datasets: [ { data: [40, 20, 12] } ]
+        labels: ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet"],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
       },
       chartOptions: {
         responsive: true
@@ -43,30 +49,30 @@ export default {
   <BaseLayout>
     <div class="grid h-full grid-cols-5 gap-2">
         
-      <!-- <div class="flex-grow p-2 bg-white rounded-md">
-        <div class="grid h-[2/3] rounded-3xl">
-          <div class="flex w-full grid-rows-1 ">
-            dernière constante
+      <div class="col-span-1 row-span-3 p-2 bg-white rounded-md">
+        <div class="rounded-3xl">
+          <div class="flex w-full">
+            Dernière constante
           </div>
         </div>
       </div>
     
-      <div class="flex-grow p-2 bg-white rounded-md">
-        <div class="grid h-[1/3] rounded-3xl">
-          <div class="flex w-full grid-rows-1 ">
-          </div>
-            Nouvelle constante
-          <div class="flex-grow grid-rows-2 pb-52">
+      <div class="col-span-4 row-span-5 p-2 overflow-hidden bg-white rounded-md bg-gradient-to-tr">
+        <div class="flex flex-col h-full gap-4 p-2 overflow-auto">Test
+          <Line id="my-chart-id" :options="chartOptions" :data="chartData"/>
+        </div>
+      </div>
+
+      <div class="col-span-1 row-span-2 p-2 bg-white rounded-md">
+        <div class="rounded-3xl">
+          <h2>Nouvelle constante</h2>
+          <div class="">
             <PrimaryButton v-for="(examen, index) in examens" :key="index" class='mb-2'>{{ examen.date }} <br> {{ examen.motif }}</PrimaryButton>
           </div>
         </div>
-      </div> -->
-
-      <div class="col-span-4 p-2 overflow-hidden bg-white rounded-md bg-gradient-to-tr">
-        <div class="flex flex-col h-full gap-4 p-2 overflow-auto">Test
-          <Bar id="my-chart-id" :options="chartOptions" :data="chartData"/>
-        </div>
       </div>
+
+      
 
     </div>
   </BaseLayout>
