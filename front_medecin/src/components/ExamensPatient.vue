@@ -74,29 +74,31 @@ export default {
             </div>
           </div>
         
-        <div v-else class="grid w-full h-full grid-cols-3 gap-2">
-          <div class="w-full h-full col-span-2 row-span-1 pb-5">
-            <div class="w-full h-fit">Motif :</div>
-            <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="motif"></textarea>
+          <div v-else>
+            <div class="flex justify-end"><PrimaryButton class="text-white w-fit px-14">Valider</PrimaryButton></div>
+            <div class="grid w-full h-full grid-cols-3 gap-2">
+              <div class="w-full h-full col-span-2 row-span-1 pb-5">
+                <div class="w-full h-fit">Motif :</div>
+                <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="motif"></textarea>
+              </div>
+              <div class="w-full h-full col-span-1 row-span-3 pb-5">
+                <div class="w-full h-fit">Diagnostic :</div>
+                <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="diagnostic"></textarea>
+              </div>
+              <div class="w-full h-full col-span-2 row-span-2 pb-5">
+                <div class="w-full h-fit">Résultats d'analyse :</div>
+                <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="resultat"></textarea>
+              </div>
+              <div class="w-full h-full col-span-2 row-span-2 pb-5">
+                <div class="w-full h-fit">Conclusion :</div>
+                <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="conclusion"></textarea>
+              </div>
+              <div class="w-full h-full col-span-1 row-span-2 pb-5">
+                <div class="relative w-full h-fit">Observation :</div>
+                <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="observation"></textarea>
+              </div>
+            </div>
           </div>
-          <div class="w-full h-full col-span-1 row-span-3 pb-5">
-            <div class="w-full h-fit">Diagnostic :</div>
-            <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="diagnostic"></textarea>
-          </div>
-          <div class="w-full h-full col-span-2 row-span-2 pb-5">
-            <div class="w-full h-fit">Résultats d'analyse :</div>
-            <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="resultat"></textarea>
-          </div>
-          <div class="w-full h-full col-span-2 row-span-2 pb-5">
-            <div class="w-full h-fit">Conclusion :</div>
-            <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="conclusion"></textarea>
-          </div>
-          <div class="w-full h-full col-span-1 row-span-2 pb-5">
-            <div class="relative w-full h-fit">Observation :</div>
-            <textarea style="resize: none;" class="w-full h-full bg-mercury-200" name="observation"></textarea>
-          </div>
-        </div>
-          
         </div>
       </div>
 

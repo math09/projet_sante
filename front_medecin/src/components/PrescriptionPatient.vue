@@ -11,20 +11,32 @@ export default {
     PrimaryButton
   },
   props:{
-    examens: {
+    medicaments: {
       type: Array,
       required: true
     }
   },
   data(){
     return {
-      medicSelected: 0
+      medicSelected: []
     }
   },
   methods:{
     selectedMedicament(id){
-      if (id == this.medicSelected) this.medicSelected=0;
-      else this.medicSelected=id;
+      console.log(this.medicSelected.length)
+      console.log(this.medicSelected)
+      if (this.medicSelected!=[]) { 
+        if (this.medicSelected.find(element => element.ref_medicament==id)) {
+          this.medicSelected.splice(this.medicaments.indexOf(this.medicaments.find(element => element.ref_medicament==id)), 1)
+          console.log('If 2')
+        }
+        else {
+          this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id)))
+          console.log('If 1')
+        }
+      }
+      else {this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id))); console.log('Else')}
+      console.log(this.medicSelected)
     }
   }
 };
@@ -41,39 +53,43 @@ export default {
                 <SearchIcon/>
               </InputComponent>
               </div>
-              
+              <br>              
               <div class="flex-grow grid-rows-2 overflow-auto pb-52">
-                <PrimaryButton v-for="(medicament, index) in medicament" :key="index" @click="selectedMedicament(examen.id_examen)" class='mb-2'>{{ medicament.nom }} <br> {{ medicament.molecule }} <br> {{ medicament.ref }}</PrimaryButton>
+                <PrimaryButton v-for="(medicament, index) in medicaments" :key="index" @click="selectedMedicament(medicament.ref_medicament)" :class="{'bg-white bg-image-none text-black':medicSelected.find(element => element.ref_medicament==medicament.ref_medicament)==null, 'text-white':medicSelected.find(element => element.ref_medicament==medicament.ref_medicament)!=null}" class='mb-2'>{{ medicament.nom_medicament }} <br> {{ medicament.molecule }}</PrimaryButton>
               </div>
             </div>
           </div>
 
       <div class="col-span-4 p-2 overflow-hidden bg-white rounded-md bg-gradient-to-tr">
-        <div @update:examSelected="examen.id_examen" class="flex flex-col h-full col-span-3 gap-6 p-2">
-        
-        <div class="grid w-full h-full grid-rows-3 gap-2">
+        <div class="flex flex-col w-full h-full col-span-3 grid-rows-3 gap-2 p-2 overflow-auto">
           <div class="w-full h-full row-span-1 pb-5">
-            <div>Médicament sélctionné :</div>
-            <div class="w-full h-full grid-cols-3">
-              <div class="w-full h-full col-span-1">
+            <div class="flex justify-between">
+              <p class="flex-grow text-lg font-semibold">Médicament sélctionné :</p>
+              <PrimaryButton class="text-white w-fit px-14">Valider</PrimaryButton>
+            </div>
+            <div v-for="medic in medicSelected" :key="medic.ref_medicament" class="grid w-full grid-cols-4 gap-2 h-fit">
+              <div class="row-span-1">
+                - <span>{{ medic.nom_medicament }}</span>
               </div>
-              <div class="w-full h-full col-span-2">
-                <p>Date de début : <input class="bg-mercury-200" type="text"></p>
+              <div class="w-auto row-span-1">
+                <p>Date de début : </p> <input class="bg-mercury-200" type="text">
               </div>
-              <div class="w-full h-full col-span-3"></div>
-              <div class="w-full h-full col-span-3"></div>
+              <div class="w-auto row-span-1">
+                <p>Date de fin : </p>   <input class="bg-mercury-200" type="text">
+              </div>
+              <div class="w-auto row-span-1">
+                <p>Périodicité : </p>   <input class="bg-mercury-200" type="text">
+              </div>
             </div>
           </div>
           <div class="w-full h-full row-span-2 pb-5">
-            <div>Champs libre :</div>
+            <div class="text-lg font-semibold">Champs libre :</div>
             <textarea style="resize: none;" class="w-full h-full rounded-md bg-mercury-200" name="diagnostic"></textarea>
           </div>
           <div class="w-full h-full row-span-3 pb-5">
-            <div>Signature :</div>
+            <div class="text-lg font-semibold">Signature :</div>
             <textarea style="resize: none;" class="w-full h-full rounded-md bg-mercury-200" name="resultat"></textarea>
           </div>
-        </div>
-          
         </div>
       </div>
 
