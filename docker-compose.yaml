@@ -51,6 +51,16 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - mysql_net
+  
+  front_administration:
+    build:
+      context: ./front_administration
+    ports:
+      - "8080:80"
+    depends_on:
+      - app_mongo
+    networks:
+      - mongodb_net
 
 volumes:
   mongo-data:
