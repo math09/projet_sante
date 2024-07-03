@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from pymongo import MongoClient
 from config import Config
 from bson.objectid import ObjectId
+from auth import token_required
 
 administration_bp = Blueprint('administration', __name__)
 
@@ -11,6 +12,7 @@ db = client[Config.MONGO_DBNAME]
 
 #get all administration
 @administration_bp.route('/administration', methods=['GET'])
+@token_required
 def get_administration():
     administration = db.administration.find()
     result = []
@@ -21,6 +23,7 @@ def get_administration():
 
 # get one administration
 @administration_bp.route('/administration/<id>', methods=['GET'])
+@token_required
 def get_administration_by_id(id):
     administration = db.administration.find_one({'_id': ObjectId(id)})
     if administration:
@@ -31,6 +34,7 @@ def get_administration_by_id(id):
     
 # add administration
 @administration_bp.route('/administration', methods=['POST'])
+@token_required
 def add_administration():
     data = request.get_json()
 
@@ -48,6 +52,7 @@ def add_administration():
 
 # update administration
 @administration_bp.route('/administration/<id>', methods=['PUT'])
+@token_required
 def update_administration(id):
     data = request.get_json()
 
@@ -67,6 +72,7 @@ def update_administration(id):
 
 # delete administration
 @administration_bp.route('/administration/<id>', methods=['DELETE'])
+@token_required
 def delete_administration(id):
     result = db.administration.delete_one({'_id': ObjectId(id)})
 
