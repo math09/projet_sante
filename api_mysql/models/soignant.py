@@ -4,6 +4,7 @@ from app import db
 
 class Soignant(db.Model):
     __tablename__ = 'soignant'
+    __table_args__ = {'extend_existing': True}
     id_medecin = Column(BigInteger, primary_key=True)
     nom = Column(String(100), nullable=False)
     prenom = Column(String(100), nullable=False)
@@ -13,8 +14,6 @@ class Soignant(db.Model):
     isActif = Column(Boolean, default=True)
     email = Column(String(100), nullable=False)
     num_telephone = Column(String(11), nullable=False)
-    prescriptions = relationship("Prescription", backref="soignant")
-    examens = relationship("Examen", backref="soignant")
 
     def to_dict(self):
         return {
@@ -27,6 +26,4 @@ class Soignant(db.Model):
             'isActif': self.isActif,
             'email': self.email,
             'num_telephone': self.num_telephone,
-            'prescriptions': [prescription.to_dict() for prescription in self.prescriptions],
-            'examens': [examen.to_dict() for examen in self.examens]
         }

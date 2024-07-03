@@ -5,3 +5,4 @@ mysql-connector-python == 8.4.0
 werkzeug == 3.0.3
 PyJWT == 2.8.0
 python-dotenv == 1.0.1
+Faker == 26.0.0
