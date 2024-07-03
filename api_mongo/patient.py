@@ -3,8 +3,6 @@ from pymongo import MongoClient
 from config import Config
 from bson.objectid import ObjectId
 import re
-import datetime
-import jwt
 from auth import token_required
 
 patient_bp = Blueprint('patient', __name__)
@@ -126,30 +124,3 @@ def delete_patient(id):
         return jsonify({'error': 'Patient not found'}), 404
 
     return jsonify({'message': 'Patient deleted successfully'}), 200
-
-
-
-def verify_patient(email, mdp):
-    patient = db.patient.find_one({'email': email, 'mdp': mdp})
-    return patient
-
-# login patients
-@patient_bp.route('/login', methods=['POST'])
-def login_patient():
-    data = request.get_json()
-    email = data.get('email')
-    mdp = data.get('mdp')
-    patient = verify_patient(email, mdp)
-    if patient:
-        token = jwt.encode(
-            {
-                'email': email,
-                'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=30)
-            },
-            Config.SECRET_KEY,
-            algorithm='HS256'
-        )
-        patient['_id'] = str(patient['_id'])
-        return jsonify({'token': token, 'patient': patient}), 200
-    else:
-        return jsonify({'error': 'Invalid credentials'}), 401
