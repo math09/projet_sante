@@ -57,6 +57,9 @@ export default {
       {id_examen: "5", id_patient: "1", motif: "Respire en lieu public", observation: "Ses poumons ont besoin d'air", 
       diagnostic: "Prescription de médicament anti-respiration", resultat_analyse: "Respire", conclusion: "Doit arreter de respirer",
       date: "11/11/1111 11:11:11.111" },
+      {id_examen: "6", id_patient: "1", motif: "Respire en lieu public", observation: "Ses poumons ont besoin d'air", 
+      diagnostic: "Prescription de médicament anti-respiration", resultat_analyse: "RespireTTTTTTTTTTT", conclusion: "Doit arreter de respirer",
+      date: "11/11/1111 11:11:11.111" },
       {id_examen: "4", id_patient: "2", motif: "Respire en lieu public", observation: "Ses poumons ont besoin d'air", 
       diagnostic: "Prescription de médicament anti-respiration", resultat_analyse: "Respire", conclusion: "Doit arreter de respirer",
       date: "22/22/2222 22:22:22.222" },
@@ -211,11 +214,11 @@ export default {
       <div class="col-span-4 overflow-hidden bg-gradient-to-tr">
         <div class="flex flex-col h-full gap-4 p-4 rounded-md bg-mercury-200">
           
-          <div class="flex items-end justify-between">
-            <PrimaryButton class="h-fit mx-0.5" @click="navBarre(1)" :buttonClass="{'bg-white bg-image-none text-black':page!=1, 'text-white':page==1}">Informations patient</PrimaryButton>
-            <PrimaryButton class="h-fit mx-0.5" @click="navBarre(2)" :buttonClass="{'bg-white bg-image-none text-black':page!=2, 'text-white':page==2}">Examens</PrimaryButton>
-            <PrimaryButton class="h-fit mx-0.5" @click="navBarre(3)" :buttonClass="{'bg-white bg-image-none text-black':page!=3, 'text-white':page==3}">Constante</PrimaryButton>
-            <PrimaryButton class="h-fit mx-0.5" @click="navBarre(4)" :buttonClass="{'bg-white bg-image-none text-black':page!=4, 'text-white':page==4}">Prescription</PrimaryButton>
+          <div class="flex items-end justify-between gap-2">
+            <PrimaryButton class="h-fit" @click="navBarre(1)" :buttonClass="{'bg-white bg-image-none text-black':page!=1, 'text-white':page==1}">Informations patient</PrimaryButton>
+            <PrimaryButton class="h-fit" @click="navBarre(2)" :buttonClass="{'bg-white bg-image-none text-black':page!=2, 'text-white':page==2}">Examens</PrimaryButton>
+            <PrimaryButton class="h-fit" @click="navBarre(3)" :buttonClass="{'bg-white bg-image-none text-black':page!=3, 'text-white':page==3}">Constante</PrimaryButton>
+            <PrimaryButton class="h-fit" @click="navBarre(4)" :buttonClass="{'bg-white bg-image-none text-black':page!=4, 'text-white':page==4}">Prescription</PrimaryButton>
           </div>
           
           <div v-if="page==1 && persons!=undefined" class="h-full">

@@ -1,48 +1,56 @@
 <template>
-<div class="h-full bg-white">
+<div class="h-full bg-white rounded-xl">
   
-  <div v-if="person!=undefined || person!=null" class="grid w-full h-full p-2 overflow-auto h-grid rounded-3xl">
+  <div v-if="person!=undefined || person!=null" class="grid w-full h-full px-8 py-5 overflow-auto h-grid">
     <div class="col-span-3 text-center">
-      <h4 class="font-semibold underline"><strong>Information</strong></h4>
+      <h4 class="font-semibold text-xl underline"><strong>Information</strong></h4>
     </div>
-      <p class="w-auto font-semibold">Nom : <span class="font-normal">{{ person.nom }}</span></p>
-      <p class="w-auto font-semibold">Prénom : <span class="font-normal">{{ person.prenom }}</span></p>
-      <p class="w-auto font-semibold">Age : <span class="font-normal">{{ getAge(person.date_naissance) }}</span></p>
+      <p class="w-auto font-semibold text-lg">Nom : <span class="font-normal">{{ person.nom }}</span></p>
+      <p class="w-auto font-semibold text-lg">Prénom : <span class="font-normal">{{ person.prenom }}</span></p>
+      <p class="w-auto font-semibold text-lg">Age : <span class="font-normal">{{ getAge(person.date_naissance) }}</span></p>
     
-      <p class="w-auto font-semibold">Date de naissance : <span class="font-normal">{{ person.date_naissance }}</span></p>
-      <p class="w-auto col-span-2 font-semibold">Lieu de naissance : <span class="font-normal">{{ person.lieu_de_naissance }}</span></p>
+      <p class="w-auto font-semibold text-lg">Date de naissance : <span class="font-normal">{{ person.date_naissance }}</span></p>
+      <p class="w-auto col-span-2 font-semibold text-lg">Lieu de naissance : <span class="font-normal">{{ person.lieu_de_naissance }}</span></p>
     
-      <p class="w-auto font-semibold">Numéro sécurité sociale : <span class="font-normal">{{ person.num_secu }}</span></p>
-      <p class="w-auto font-semibold">Numéro mutuelle : <span class="font-normal">{{ person.num_mutuelle }}</span></p>
-      <p class="w-auto font-semibold">Nom mutuelle : <span class="font-normal">{{ person.nom_mutuelle }}</span></p>
+      <p class="w-auto font-semibold text-lg">Numéro sécurité sociale : <span class="font-normal">{{ person.num_secu }}</span></p>
+      <p class="w-auto font-semibold text-lg">Numéro mutuelle : <span class="font-normal">{{ person.num_mutuelle }}</span></p>
+      <p class="w-auto font-semibold text-lg">Nom mutuelle : <span class="font-normal">{{ person.nom_mutuelle }}</span></p>
     
-      <p class="w-auto font-semibold">Adresse : <span class="font-normal">{{ person.adresse }}</span></p>
-      <p class="w-auto font-semibold">Etat/Province : <span class="font-normal">{{ person.etat }}</span></p>
-      <p class="w-auto font-semibold">Pays : <span class="font-normal">{{ person.pays }}</span></p>
+      <p class="w-auto font-semibold text-lg">Adresse : <span class="font-normal">{{ person.adresse }}</span></p>
+      <p class="w-auto font-semibold text-lg">Etat/Province : <span class="font-normal">{{ person.etat }}</span></p>
+      <p class="w-auto font-semibold text-lg">Pays : <span class="font-normal">{{ person.pays }}</span></p>
   
-      <p class="w-auto font-semibold">Mobile : <span class="font-normal">{{ person.num_telephone }}</span></p>
-      <p class="w-auto col-span-2 font-semibold">Email : <span class="font-normal">{{ person.email }}</span></p>
+      <p class="w-auto font-semibold text-lg">Mobile : <span class="font-normal">{{ person.num_telephone }}</span></p>
+      <p class="w-auto col-span-2 font-semibold text-lg">Email : <span class="font-normal">{{ person.email }}</span></p>
     
     <div class="col-span-3 text-center">
-      <h3 class="font-semibold underline"><strong>Personne à contacter</strong></h3>
+      <h3 class="font-semibold text-xl underline"><strong>Personne à contacter</strong></h3>
     </div>
-      <p class="w-auto font-semibold">Nom : <span class="font-normal">{{ person.personneAContacter.nom_contact }}</span></p>
-      <p class="w-auto col-span-2 font-semibold">Prénom : <span class="font-normal">{{ person.personneAContacter.prenom_contact }}</span></p>
+      <p class="w-auto font-semibold text-lg">Nom : <span class="font-normal">{{ person.personneAContacter.nom_contact }}</span></p>
+      <p class="w-auto col-span-2 font-semibold text-lg">Prénom : <span class="font-normal">{{ person.personneAContacter.prenom_contact }}</span></p>
     
-      <p class="w-auto font-semibold">Mobile : <span class="font-normal">{{ person.personneAContacter.num_contact }}</span></p>
+      <p class="w-auto font-semibold text-lg">Mobile : <span class="font-normal">{{ person.personneAContacter.num_contact }}</span></p>
 
     <div class="col-span-3 text-center">
-      <h4 class="font-semibold underline"><Strong>Autre</Strong></h4>
+      <h4 class="font-semibold text-xl underline"><Strong>Autre</Strong></h4>
     </div>
     
-      <p class="font-semibold">Antécédent : <span class="font-normal">{{ person.autre.antecedent }}</span></p>
+      <p class="font-semibold text-lg">Antécédent : <span class="font-normal">{{ person.autre.antecedent }}</span></p>
     
     
-      <p class="font-semibold">Mobile : <span class="font-normal">{{ person.autre.allergie }}</span></p>
+      <p class="font-semibold text-lg">Allergie : <span class="font-normal">{{ person.autre.allergie }}</span></p>
     
     <div class="col-span-3 text-center">
-      <h4 class="w-auto font-semibold underline"><Strong>Dernière constante :</Strong></h4>
+      <h4 class="w-auto font-semibold text-xl underline"><Strong>Dernière constante :</Strong></h4>
     </div>
+      <p class="w-auto font-semibold text-lg col-span-3">Date de relevé : <span class="font-normal">05/04/2024</span></p>
+      <p class="w-auto font-semibold text-lg">Fréquence cardiaque : <span class="font-normal">20</span></p>
+      <p class="w-auto  font-semibold text-lg col-span-2">Tension : <span class="font-normal">5</span></p>
+      <p class="w-auto font-semibold text-lg">Température : <span class="font-normal">37,5</span></p>
+      <p class="w-auto col-span-2 font-semibold text-lg">Groupe sanguin : <span class="font-normal">O+</span></p>
+      <p class="w-auto font-semibold text-lg">Taille (cm): <span class="font-normal">167</span></p>
+      <p class="w-auto font-semibold text-lg">Poids (kg): <span class="font-normal">54</span></p>
+      <p class="w-auto font-semibold text-lg">IMC : <span class="font-normal">34</span></p>
   </div>
   
 </div>

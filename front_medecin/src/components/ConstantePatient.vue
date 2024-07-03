@@ -2,7 +2,7 @@
 import { Line } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js'
 import PrimaryButton from '@/components/PrimaryButton.vue';
-import { data } from 'autoprefixer';
+import InputComponent from './InputComponent.vue';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, PointElement, LineElement)
 
@@ -10,7 +10,8 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,
 export default {
   components: {
     PrimaryButton,
-    Line
+    Line,
+    InputComponent
   },
   props:{
     constantes: {
@@ -59,7 +60,7 @@ export default {
         
       <div class="col-span-1 row-span-2 px-2 bg-white rounded-md">
         <div v-if="constantes!=undefined || constantes!=null" class="rounded-3xl h-fit">
-          <div class="flex flex-col w-full gap-2 h-fit">
+          <div class="flex flex-col w-full gap-2 h-fit mt-2">
             <span class="font-semibold text-center underline">Dernière constante</span>
             <p>Date : <span>{{ constantes[constantes.length-1].date_releve }}</span></p>
             <p>Fréquence cardiaque : <span>{{ constantes[constantes.length-1].frequence_cardiaque }}</span></p>
@@ -68,7 +69,7 @@ export default {
             <p>Poids : <span>{{ constantes[constantes.length-1].poids }}</span> kg</p>
             <p>Taille : <span>{{ constantes[constantes.length-1].taille }}</span> cm</p>
             <p>IMC : <span>{{ (constantes[constantes.length-1].taille/constantes[constantes.length-1].poids)*constantes[constantes.length-1].poids }}</span></p>
-            <p>Groupe sanguiun : <span>{{ constantes[constantes.length-1].groupe_sanguin }}</span></p>
+            <p>Groupe sanguin : <span>{{ constantes[constantes.length-1].groupe_sanguin }}</span></p>
           </div>
         </div>
       </div>
@@ -84,10 +85,20 @@ export default {
         </div>
       </div>
 
-      <div class="col-span-1 row-span-3 p-2 bg-white rounded-md">
-        <div class="flex flex-col w-full rounded-3xl">
+      <div class="col-span-1 row-span-3 p-3 bg-white rounded-md">
+        <div class="flex flex-col w-full">
           <span class="font-semibold text-center underline">Nouvelle constante</span>
-          <PrimaryButton v-for="(examen, index) in examens" :key="index" class='mb-2'>{{ examen.date }} <br> {{ examen.motif }}</PrimaryButton>
+          <label for="constanteSelect" class="mb-2 mt-4 font-semibold text-md">Type : </label>
+          <select class="rounded-md h-fit w-full mb-4 px-2.5 py-2" v-model="choixConstante" id="constanteSelect">
+            <option value="1">Fréquence cardiaque</option>
+            <option value="2">Tension</option>
+            <option value="3">Température</option>
+            <option value="4">Poids</option>
+            <option value="5">Taille</option>
+            <option value="6">Groupe sanguin</option>
+          </select>
+          <InputComponent id="constanteValue" type="text" label="Valeur : " inputClass="text-md bg-neutral-200 !px-2.5 !py-2 rounded-md w-fit !shadow-none"></InputComponent>
+          <PrimaryButton class="mt-6 text-white py-1.5 !shadow-none">Valider</PrimaryButton>
         </div>
       </div>
 
