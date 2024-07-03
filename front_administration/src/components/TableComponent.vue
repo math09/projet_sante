@@ -11,15 +11,14 @@
         </thead>
         <tbody>
           <tr v-for="(person, index) in persons" :key="index" :class="{'bg-gray-100': index % 2 === 0, 'bg-gray-50': index % 2 !== 0, 'bg-gradient-to-r from-teal-500 to-teal-300 text-white': selectedRow === index}"  @click="selectRow(index)">
-            <td class="p-4 border border-gray-300" :class="{' rounded-bl-xl': isLastRow(index, persons.length)}">{{ person.nom }}</td>
-            <td class="p-4 border border-gray-300">{{ person.prenom }}</td>
-            <td class="p-4 border border-gray-300">{{ person.age }}</td>
-            <td class="p-4 border border-gray-300" :class="{' rounded-br-xl': isLastRow(index, persons.length)}">{{ person.num_secu }}</td>
+            <td class="border border-gray-300 p-4" :class="{' rounded-bl-xl': isLastRow(index, persons.length)}">{{ person.nom }}</td>
+            <td class="border border-gray-300 p-4">{{ person.prenom }}</td>
+            <td class="border border-gray-300 p-4">{{ person.date_naissance }}</td>
+            <td class="border border-gray-300 p-4" :class="{' rounded-br-xl': isLastRow(index, persons.length)}">{{ person.num_secu }}</td>
           </tr>
         </tbody>
       </table>
   </div>
-  
 </template>
 
 <script>

@@ -36,25 +36,25 @@
       </div>
       <div class="flex flex-col gap-2 mb-8 text-lg" v-else>
         <div class="flex justify-between">
-          <h2 class="text-xl font-bold underline">{{ create ? "Nouveau patient" : "Patient" }}</h2>
-          <PrimaryButton buttonClass="!shadow-none">
+          <h2 class="font-bold text-xl underline">{{ create ? "Nouveau patient" : "Patient" }}</h2>
+          <PrimaryButton buttonClass="!shadow-none" @click="createPatient">
             Valider
           </PrimaryButton>
         </div>
-        <InputComponent id="nom" label="Nom" type="text" v-model="formData.nom" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="prenom" label="Prénom" type="text" v-model="formData.prenom" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="date_naissance" label="Date de naissance" type="text" v-model="formData.date_naissance" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="lieu_de_naissance" label="Lieu de naissance" type="text" v-model="formData.lieu_de_naissance" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="num_secu" label="Numéro sécurité sociale" type="text" v-model="formData.num_secu" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="num_mutuelle" label="Numéro mutuelle" type="text" v-model="formData.num_mutuelle" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="nom_mutuelle" label="Nom mutuelle" type="text" v-model="formData.nom_mutuelle" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="adresse" label="Adresse" type="text" v-model="formData.adresse" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="code_postal" label="Code postale" type="text" v-model="formData.code_postal" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="ville" label="Ville" type="text" v-model="formData.ville" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="etat" label="Etat/Province" type="text" v-model="formData.etat" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="pays" label="Pays" type="text" v-model="formData.pays" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="num_telephone" label="Mobile" type="text" v-model="formData.num_telephone" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
-        <InputComponent id="email" label="Email" type="text" v-model="formData.email" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="nom" label="Nom" type="text" v-model="formData.nom" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="prenom" label="Prénom" type="text" v-model="formData.prenom" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="date_naissance" label="Date de naissance" type="date" v-model="formData.date_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="lieu_de_naissance" label="Lieu de naissance" type="text" v-model="formData.lieu_de_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="num_secu" label="Numéro sécurité sociale" type="text" v-model="formData.num_secu" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="num_mutuelle" label="Numéro mutuelle" type="text" v-model="formData.num_mutuelle" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="nom_mutuelle" label="Nom mutuelle" type="text" v-model="formData.nom_mutuelle" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="adresse" label="Adresse" type="text" v-model="formData.adresse" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="code_postal" label="Code postale" type="text" v-model="formData.code_postal" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="ville" label="Ville" type="text" v-model="formData.ville" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="etat" label="Etat/Province" type="text" v-model="formData.etat" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="pays" label="Pays" type="text" v-model="formData.pays" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="num_telephone" label="Mobile" type="text" v-model="formData.num_telephone" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="email" label="Email" type="text" v-model="formData.email" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         
         <div class="mt-8 text-center">
           <h3 class="text-xl font-bold underline">Personne à contacter</h3>
@@ -74,6 +74,8 @@
 import PrimaryButton from './PrimaryButton.vue';
 import EditIcon from './icons/EditIcon.vue';
 import InputComponent from './InputComponent.vue';
+import axios from '@/utils/axiosInterseptor'
+
 
 export default {
   props: {
@@ -107,11 +109,63 @@ export default {
       const diff = Math.abs(today - date);
       const diffYears = Math.ceil(diff / (1000 * 3600 * 24 * 365.25));
       
-      return Math.floor(diffYears).toString + " ans"
+      return Math.floor(diffYears).toString() + " ans"
     },
     editButton(){
       this.$emit('update:modify');
       this.formData = this.data
+    },
+    async createPatient(){
+      if(this.modify == false){
+        await axios.post('patients', {
+          "nom" : this.formData.nom,
+          "prenom": this.formData.prenom,
+          "date_naissance": this.formData.date_naissance,
+          "lieu_de_naissance": this.formData.lieu_de_naissance,
+          "num_secu": this.formData.num_secu,
+          "numéro_mutuelle": this.formData.num_mutuelle,
+          "nom_mutuelle": this.formData.nom_mutuelle,
+          "nom_contact": this.formData.nom_contact,
+          "prenom_contact": this.formData.prenom_contact,
+          "num_contact": this.formData.num_contact,
+          "antecedants": this.formData.antecedants,
+          "allergies": this.formData.allergie,
+          "adresse": this.formData.adresse,
+          "code_postal": this.formData.code_postal,
+          "ville": this.formData.ville,
+          "etat": this.formData.etat,
+          "pays": this.formData.pays,
+          "num_telephone": this.formData.num_telephone,
+          "email": this.formData.email
+        }).then((r)=>{
+          this.$emit('create:finish', r.data._id);
+        })
+      }else{
+        await axios.put(`/patients/${this.data._id}`, {
+          "nom" : this.formData.nom,
+          "prenom": this.formData.prenom,
+          "date_naissance": this.formData.date_naissance,
+          "lieu_de_naissance": this.formData.lieu_de_naissance,
+          "num_secu": this.formData.num_secu,
+          "numéro_mutuelle": this.formData.num_mutuelle,
+          "nom_mutuelle": this.formData.nom_mutuelle,
+          "nom_contact": this.formData.nom_contact,
+          "prenom_contact": this.formData.prenom_contact,
+          "num_contact": this.formData.num_contact,
+          "antecedants": this.formData.antecedants,
+          "allergies": this.formData.allergie,
+          "adresse": this.formData.adresse,
+          "code_postal": this.formData.code_postal,
+          "ville": this.formData.ville,
+          "etat": this.formData.etat,
+          "pays": this.formData.pays,
+          "num_telephone": this.formData.num_telephone,
+          "email": this.formData.email
+        }
+        ).then((r)=>{
+          this.$emit('create:finish', r.data._id);
+        });
+      }
     }
   },
   data() {
@@ -130,7 +184,7 @@ export default {
         if (this.create) {
           this.formData = {};
         } else {
-          this.formData = newValue;
+          this.formData = newValue ? newValue  : {};
         }
       },
       immediate: true
