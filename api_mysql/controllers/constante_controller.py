@@ -1,5 +1,6 @@
 from models.constante import Constante
 from app import db
+import datetime
 
 def get_all_constantes():
     return Constante.query.all()
@@ -9,6 +10,7 @@ def get_constante_by_id(id_constante):
 
 def create_constante(data):
     new_constante = Constante(**data)
+    new_constante.date_releve = datetime.datetime.now(datetime.timezone.utc)
     db.session.add(new_constante)
     db.session.commit()
     return new_constante
