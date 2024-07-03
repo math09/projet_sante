@@ -23,20 +23,15 @@ export default {
   },
   methods:{
     selectedMedicament(id){
-      console.log(this.medicSelected.length)
-      console.log(this.medicSelected)
       if (this.medicSelected!=[]) { 
         if (this.medicSelected.find(element => element.ref_medicament==id)) {
           this.medicSelected.splice(this.medicaments.indexOf(this.medicaments.find(element => element.ref_medicament==id)), 1)
-          console.log('If 2')
         }
         else {
           this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id)))
-          console.log('If 1')
         }
       }
       else {this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id))); console.log('Else')}
-      console.log(this.medicSelected)
     }
   }
 };
