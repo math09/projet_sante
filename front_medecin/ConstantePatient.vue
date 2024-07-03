@@ -108,7 +108,7 @@ export default {
         <div class="flex flex-col w-full">
           <span class="font-semibold text-center underline">Nouvelle constante</span>
           <label for="constanteSelect" class="mb-2 mt-4 font-semibold text-md">Type : </label>
-          <select class="rounded-md h-fit w-full mb-4 px-2.5 py-2 bg-neutral-200" v-model="selectedConstante" id="constanteSelect">
+          <select class="rounded-md h-fit w-full mb-4 px-2.5 py-2" v-model="selectedConstante" id="constanteSelect">
             <option value="1">Fréquence cardiaque</option>
             <option value="2">Tension</option>
             <option value="3">Température</option>
