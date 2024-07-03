@@ -7,7 +7,7 @@
     </div>
     
     <div class="flex flex-col gap-1 mt-10 overflow-auto">
-      <PrimaryButton v-for="person in persons" :key="person.id" class='mb-2 py-1' @click="selectPerson(person.id)" :buttonClass="{'bg-neutral-200 bg-image-none text-black !shadow-none':personSelected!=person.id, 'text-white !shadow-none':personSelected==person.id}">{{ person.nom }} {{ person.prenom }}</PrimaryButton>
+      <PrimaryButton v-for="person in persons" :key="person.num_secu" class='mb-2 py-1' @click="selectPerson(person.num_secu)" :buttonClass="{'bg-neutral-200 bg-image-none text-black !shadow-none':personSelected!=person.num_secu, 'text-white !shadow-none':personSelected==person.num_secu}">{{ person.nom }} {{ person.prenom }}</PrimaryButton>
     </div>
   </div>
   
@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      personSelected: 5
+      personSelected: null
     }
   },
   methods:{

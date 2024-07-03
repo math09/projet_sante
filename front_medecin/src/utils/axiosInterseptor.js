@@ -6,7 +6,7 @@ axios.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response.status === 403 || error.response.status === 401) {
-      router.push({name: "login-admin"})
+      router.push({name: "login-medecin"})
     }
     return Promise.reject(error)
   }

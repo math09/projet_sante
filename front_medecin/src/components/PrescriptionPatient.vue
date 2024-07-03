@@ -18,7 +18,9 @@ export default {
   },
   data() {
     return {
-      medicSelected: []
+      medicSelected: [],
+      signature: "",
+      diagnostic: ""
     }
   },
   methods: {
@@ -32,6 +34,11 @@ export default {
         }
       }
       else { this.medicSelected.push((this.medicaments.find(element => element.ref_medicament == id))) }
+    },
+    submitPrescription(){
+      this.medicSelected = []
+      this.diagnostic = "",
+      this.signature = ""
     }
   }
 };
@@ -63,31 +70,31 @@ export default {
           <div class="w-full h-full row-span-1 pb-5">
             <div class="flex justify-between">
               <p class="flex-grow text-lg font-semibold">Médicament sélctionné :</p>
-              <PrimaryButton class="text-white px-14" :buttonClass="'!w-fit'">Valider</PrimaryButton>
+              <PrimaryButton class="text-white px-14" :buttonClass="'!w-fit'" @click="submitPrescription">Valider</PrimaryButton>
             </div>
             <div v-for="medic in medicSelected" :key="medic.ref_medicament" class="grid w-full grid-cols-4 gap-2 h-fit">
               <div class="row-span-1">
                 - <span>{{ medic.nom_medicament }}</span>
               </div>
               <div class="w-auto row-span-1">
-                <p>Date de début : </p> <input class="bg-neutral-200" type="text">
+                <p>Date de début : </p> <input class="bg-neutral-200 rounded-lg px-2 py-1.5" type="date">
               </div>
               <div class="w-auto row-span-1">
-                <p>Date de fin : </p> <input class="bg-neutral-200" type="text">
+                <p>Date de fin : </p> <input class="bg-neutral-200 rounded-lg px-2 py-1.5" type="date">
               </div>
               <div class="w-auto row-span-1">
-                <p>Périodicité : </p> <input class="bg-neutral-200" type="text">
+                <p>Périodicité : </p> <input class="bg-neutral-200 rounded-lg px-2 py-1.5" type="text">
               </div>
             </div>
           </div>
           <div class="w-full h-full row-span-2 pb-5">
             <div class="text-lg font-semibold">Champs libre :</div>
-            <textarea style="resize: none;" class="w-full h-full rounded-md bg-neutral-200"
+            <textarea style="resize: none;" v-model="diagnostic" class="w-full h-full rounded-md bg-neutral-200 py-1.5 px-2 text-lg"
               name="diagnostic"></textarea>
           </div>
           <div class="w-full h-full row-span-3 pb-5">
             <div class="text-lg font-semibold">Signature :</div>
-            <textarea style="resize: none;" class="w-full h-full rounded-md bg-neutral-200" name="resultat"></textarea>
+            <textarea style="resize: none;" v-model="signature" class="w-full h-full rounded-md bg-neutral-200 py-1.5 px-2 text-lg" name="resultat"></textarea>
           </div>
         </div>
       </div>

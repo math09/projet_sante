@@ -1,6 +1,5 @@
 <template>
 <div class="h-full bg-white rounded-xl">
-  
   <div v-if="person!=undefined || person!=null" class="grid w-full h-full px-8 py-5 overflow-auto h-grid">
     <div class="col-span-3 text-center">
       <h4 class="font-semibold text-xl underline"><strong>Information</strong></h4>
@@ -26,31 +25,31 @@
     <div class="col-span-3 text-center">
       <h3 class="font-semibold text-xl underline"><strong>Personne à contacter</strong></h3>
     </div>
-      <p class="w-auto font-semibold text-lg">Nom : <span class="font-normal">{{ person.personneAContacter.nom_contact }}</span></p>
-      <p class="w-auto col-span-2 font-semibold text-lg">Prénom : <span class="font-normal">{{ person.personneAContacter.prenom_contact }}</span></p>
+      <p class="w-auto font-semibold text-lg">Nom : <span class="font-normal">{{ person.nom_contact }}</span></p>
+      <p class="w-auto col-span-2 font-semibold text-lg">Prénom : <span class="font-normal">{{ person.prenom_contact }}</span></p>
     
-      <p class="w-auto font-semibold text-lg">Mobile : <span class="font-normal">{{ person.personneAContacter.num_contact }}</span></p>
+      <p class="w-auto font-semibold text-lg">Mobile : <span class="font-normal">{{ person.num_contact }}</span></p>
 
     <div class="col-span-3 text-center">
       <h4 class="font-semibold text-xl underline"><Strong>Autre</Strong></h4>
     </div>
     
-      <p class="font-semibold text-lg">Antécédent : <span class="font-normal">{{ person.autre.antecedent }}</span></p>
+      <p class="font-semibold text-lg">Antécédent : <span class="font-normal">{{ person.antecedants }}</span></p>
     
     
-      <p class="font-semibold text-lg">Allergie : <span class="font-normal">{{ person.autre.allergie }}</span></p>
+      <p class="font-semibold text-lg">Allergie : <span class="font-normal">{{ person.allergies }}</span></p>
     
-    <div class="col-span-3 text-center">
+    <div class="col-span-3 text-center" v-if="constante">
       <h4 class="w-auto font-semibold text-xl underline"><Strong>Dernière constante :</Strong></h4>
     </div>
-      <p class="w-auto font-semibold text-lg col-span-3">Date de relevé : <span class="font-normal">05/04/2024</span></p>
-      <p class="w-auto font-semibold text-lg">Fréquence cardiaque : <span class="font-normal">20</span></p>
-      <p class="w-auto  font-semibold text-lg col-span-2">Tension : <span class="font-normal">5</span></p>
-      <p class="w-auto font-semibold text-lg">Température : <span class="font-normal">37,5</span></p>
-      <p class="w-auto col-span-2 font-semibold text-lg">Groupe sanguin : <span class="font-normal">O+</span></p>
-      <p class="w-auto font-semibold text-lg">Taille (cm): <span class="font-normal">167</span></p>
-      <p class="w-auto font-semibold text-lg">Poids (kg): <span class="font-normal">54</span></p>
-      <p class="w-auto font-semibold text-lg">IMC : <span class="font-normal">34</span></p>
+      <p v-if="constante" class="w-auto font-semibold text-lg col-span-3">Date de relevé : <span class="font-normal">{{constante.date_releve || ""}}</span></p>
+      <p v-if="constante" class="w-auto font-semibold text-lg">Fréquence cardiaque : <span class="font-normal">{{ constante.frequence_cardiaque || "" }}</span></p>
+      <p v-if="constante" class="w-auto  font-semibold text-lg col-span-2">Tension : <span class="font-normal">{{ constante.tension || ""}}</span></p>
+      <p v-if="constante" class="w-auto font-semibold text-lg">Température : <span class="font-normal">{{ constante.temperature || ""}}</span></p>
+      <p v-if="constante" class="w-auto col-span-2 font-semibold text-lg">Groupe sanguin : <span class="font-normal">{{ constante.groupe_sanguin || ""}}</span></p>
+      <p v-if="constante" class="w-auto font-semibold text-lg">Taille (cm): <span class="font-normal">{{ constante.taille || ""}}</span></p>
+      <p v-if="constante" class="w-auto font-semibold text-lg">Poids (kg): <span class="font-normal">{{ constante.poids || ""}}</span></p>
+      <p v-if="constante" class="w-auto font-semibold text-lg">IMC : <span class="font-normal">{{ (constante.taille/constante.poids)*constante.poids || ""}}</span></p>
   </div>
   
 </div>
@@ -70,6 +69,10 @@ export default {
     person: {
       type: Object,
       required: true
+    },
+    constante:{
+      type: Object,
+      required: false
     }
   },
   methods:{
