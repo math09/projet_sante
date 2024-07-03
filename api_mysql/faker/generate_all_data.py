@@ -86,7 +86,7 @@ def generate_examens(session, patient_ids, num_records=10):
     session.commit()
 
 def generate_constantes(session, patient_ids, num_records=10):
-    for _ in range(num_records):
+    for _ in range(num_records*10):
         constante = Constante(
             frequence_cardiaque=fake.random_int(min=60, max=100),  # battements par minute
             tension=fake.pyfloat(left_digits=2, right_digits=1, positive=True, min_value=10.0, max_value=20.0),  # tension artérielle

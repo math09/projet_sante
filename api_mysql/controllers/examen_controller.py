@@ -1,5 +1,6 @@
 from models.examen import Examen
 from app import db
+import datetime
 
 def get_all_examens():
     return Examen.query.all()
@@ -12,6 +13,7 @@ def get_examens_by_patient_id(id_patient):
 
 def create_examen(data):
     new_examen = Examen(**data)
+    new_examen.date_examen = datetime.datetime.now(datetime.timezone.utc)
     db.session.add(new_examen)
     db.session.commit()
     return new_examen
