@@ -45,7 +45,6 @@ export default {
         conclusion: data.conclusion,
         observation: data.observation,
         id_patient: this.patientAffiche,
-        date_examen: "2023-07-03",
         id_medecin: 1
       }).then((response) => {
         this.examens.push(response.data);
@@ -89,10 +88,6 @@ export default {
         console.log(res.data);
         this.constantes.push(res.data);
       });
-
-      // await axios.get('constantes').then((response) => {
-      //   this.constantes = response.data;
-      // });
     }
   },
   async mounted(){
