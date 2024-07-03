@@ -16,9 +16,6 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-
       this.$router.push({name: "home"})
     }
   }

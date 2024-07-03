@@ -31,7 +31,7 @@ export default {
           this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id)))
         }
       }
-      else {this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id))); console.log('Else')}
+      else {this.medicSelected.push((this.medicaments.find(element => element.ref_medicament==id)))}
     }
   }
 };
