@@ -20,7 +20,8 @@ export default {
     return {
       medicSelected: [],
       signature: "",
-      diagnostic: ""
+      diagnostic: "",
+      search: ""
     }
   },
   methods: {
@@ -40,7 +41,17 @@ export default {
       this.diagnostic = "",
       this.signature = ""
     }
-  }
+  },
+  computed: {
+    filteredMedicaments() {
+      const searchTerm = this.search.toLowerCase();
+      return this.medicaments.filter(med =>
+        med.nom_medicament.toLowerCase().includes(searchTerm) ||
+        med.molecule.toLowerCase().includes(searchTerm) ||
+        med.ref_medicament.toString().includes(searchTerm)
+      );
+    }
+  },
 };
 </script>
 
@@ -50,14 +61,14 @@ export default {
       <div class="flex-grow p-2 bg-white rounded-lg">
         <div class="h-full">
           <div class="flex w-full">
-            <InputComponent id="search" label="Rechercher" type="text" v-model="search" @input-c="searchInDb"
+            <InputComponent id="search" label="Rechercher" type="text" v-model="search"
               input-class="w-full h-4 border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300">
               <SearchIcon />
             </InputComponent>
           </div>
           <br>
           <div class="flex flex-col gap-2 overflow-auto">
-            <PrimaryButton v-for="(medicament, index) in medicaments" :key="index"
+            <PrimaryButton v-for="(medicament, index) in filteredMedicaments" :key="index"
               @click="selectedMedicament(medicament.ref_medicament)"
               :class="{ 'bg-neutral-200 bg-image-none text-black !shadow-none': medicSelected.find(element => element.ref_medicament == medicament.ref_medicament) == null, 'text-white !shadow-none': medicSelected.find(element => element.ref_medicament == medicament.ref_medicament) != null }"
               >{{ medicament.nom_medicament }} <br> {{ medicament.molecule }}</PrimaryButton>

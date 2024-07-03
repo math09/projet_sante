@@ -23,7 +23,8 @@ export default {
       diagnostic: "",
       analyse: "",
       conclusion: "",
-      observation: ""
+      observation: "",
+      search: ""
     }
   },
   methods: {
@@ -54,6 +55,14 @@ export default {
       this.examSelected = null;
     }
   },
+  computed: {
+    filteredExamen() {
+      const searchTerm = this.search.toLowerCase();
+      return this.examens.filter(exam =>
+        exam.motif.toLowerCase().includes(searchTerm)
+      );
+    }
+  }
 };
 </script>
 
@@ -63,13 +72,13 @@ export default {
       <div class="p-2 bg-white rounded-lg">
         <div class="h-full">
           <div class="w-full">
-            <InputComponent id="search" label="Rechercher" type="text" v-model="search" @input-c="searchInDb"
+            <InputComponent id="search" label="Rechercher" type="text" v-model="search"
               input-class="w-full h-4 border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300">
               <SearchIcon />
             </InputComponent>
           </div>
           <div class="flex flex-col gap-2 overflow-auto mt-5">
-            <PrimaryButton v-for="(examen, index) in examens" :key="index" @click="selectedExamen(examen.id_examens)"
+            <PrimaryButton v-for="(examen, index) in filteredExamen" :key="index" @click="selectedExamen(examen.id_examens)"
               class='mb-2 !shadow-none' :buttonClass="{'bg-neutral-200 bg-image-none text-black':examen.id_examens!=examSelected, 'text-white':examen.id_examens==examSelected}">{{ examen.date }} <br> {{ examen.motif }}</PrimaryButton>
           </div>
         </div>
