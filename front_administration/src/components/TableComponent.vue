@@ -1,12 +1,12 @@
 <template>
-  <div class="bg-white p-5 rounded-3xl h-full flex overflow-auto">
-    <table class="w-full border-separate rounded-xl h-fit table-auto">
+  <div class="flex h-full p-5 overflow-auto bg-white rounded-3xl">
+    <table class="w-full border-separate table-auto rounded-xl h-fit">
         <thead>
           <tr>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left rounded-tl-xl">Nom</th>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left">Prénom</th>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left">Date de naissance</th>
-            <th class="bg-gray-200 border border-gray-300 p-4 text-left rounded-tr-xl">Numéro de sécurité sociale</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300 rounded-tl-xl">Nom</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300">Prénom</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300">Date de naissance</th>
+            <th class="p-4 text-left bg-gray-200 border border-gray-300 rounded-tr-xl">Numéro de sécurité sociale</th>
           </tr>
         </thead>
         <tbody>

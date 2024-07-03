@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-white p-8 rounded-3xl h-full flex overflow-auto w-full">
+  <div class="flex w-full h-full p-8 overflow-auto bg-white rounded-3xl">
     <div v-if="data || create" class="w-full">
-      <div class="flex flex-col gap-2 text-lg w-full" v-if="!modify && !create">
+      <div class="flex flex-col w-full gap-2 text-lg" v-if="!modify && !create">
         <div class="flex justify-between">
-          <h2 class="font-bold text-xl underline">Patient</h2>
+          <h2 class="text-xl font-bold underline">Patient</h2>
           <PrimaryButton @click="editButton" buttonClass="!shadow-none px-4">
             <EditIcon/>
           </PrimaryButton>
@@ -27,14 +27,14 @@
         <p class="font-semibold">Pays : <span class="font-normal">{{ data.pays }}</span></p>
         <p class="font-semibold">Mobile : <span class="font-normal">{{ data.num_telephone }}</span></p>
         <p class="font-semibold">Email : <span class="font-normal">{{ data.email }}</span></p>
-        <div class="text-center mt-8">
-          <h3 class="font-bold text-xl underline">Personne à contacter</h3>
+        <div class="mt-8 text-center">
+          <h3 class="text-xl font-bold underline">Personne à contacter</h3>
         </div>
         <p class="font-semibold">Nom : <span class="font-normal">{{ data.nom_contact }}</span></p>
         <p class="font-semibold">Prénom : <span class="font-normal">{{ data.prenom_contact }}</span></p>
         <p class="font-semibold">Mobile : <span class="font-normal">{{ data.num_contact }}</span></p>
       </div>
-      <div class="flex flex-col gap-2 text-lg mb-8" v-else>
+      <div class="flex flex-col gap-2 mb-8 text-lg" v-else>
         <div class="flex justify-between">
           <h2 class="font-bold text-xl underline">{{ create ? "Nouveau patient" : "Patient" }}</h2>
           <PrimaryButton buttonClass="!shadow-none" @click="createPatient">
@@ -56,15 +56,15 @@
         <InputComponent id="num_telephone" label="Mobile" type="text" v-model="formData.num_telephone" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         <InputComponent id="email" label="Email" type="text" v-model="formData.email" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         
-        <div class="text-center mt-8">
-          <h3 class="font-bold text-xl underline">Personne à contacter</h3>
+        <div class="mt-8 text-center">
+          <h3 class="text-xl font-bold underline">Personne à contacter</h3>
         </div>
-        <InputComponent id="nom_contact" label="Nom" type="text" v-model="formData.nom_contact" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="prenom_contact" label="Prénom" type="text" v-model="formData.prenom_contact" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="num_contact" label="Mobile" type="text" v-model="formData.num_contact" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="nom_contact" label="Nom" type="text" v-model="formData.nom_contact" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="prenom_contact" label="Prénom" type="text" v-model="formData.prenom_contact" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
+        <InputComponent id="num_contact" label="Mobile" type="text" v-model="formData.num_contact" input-class="border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300" />
       </div>
     </div>
-    <div class="flex justify-center items-center w-full" v-else>
+    <div class="flex items-center justify-center w-full" v-else>
       <p class="w-fit">Veuillez sélectionner un patient pour voir ces informations.</p>
     </div>
   </div>

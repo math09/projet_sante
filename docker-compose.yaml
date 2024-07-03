@@ -61,6 +61,16 @@ services:
       - app_mongo
     networks:
       - mongodb_net
+  
+  front_medecin:
+    build:
+      context: ./front_medecin
+    ports:
+      - "8081:80"
+    depends_on:
+      - app_mysql
+    networks:
+      - mysql_net
 
 volumes:
   mongo-data:
