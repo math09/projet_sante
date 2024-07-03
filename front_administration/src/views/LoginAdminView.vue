@@ -18,9 +18,9 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const response = await axios.post('/api/login', {
+        const response = await axios.post('/login', {
           email: this.email,
-          password: this.password
+          mdp: this.password
         })
         if (response.status == 200) {
           localStorage.setItem("token", response.data.token)

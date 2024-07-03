@@ -43,7 +43,7 @@
         </div>
         <InputComponent id="nom" label="Nom" type="text" v-model="formData.nom" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         <InputComponent id="prenom" label="Prénom" type="text" v-model="formData.prenom" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
-        <InputComponent id="date_naissance" label="Date de naissance" type="text" v-model="formData.date_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
+        <InputComponent id="date_naissance" label="Date de naissance" type="date" v-model="formData.date_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         <InputComponent id="lieu_de_naissance" label="Lieu de naissance" type="text" v-model="formData.lieu_de_naissance" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         <InputComponent id="num_secu" label="Numéro sécurité sociale" type="text" v-model="formData.num_secu" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
         <InputComponent id="num_mutuelle" label="Numéro mutuelle" type="text" v-model="formData.num_mutuelle" input-class="bg-neutral-200 border-gray-200 focus:border-gray-300 shadow-none" />
@@ -109,7 +109,7 @@ export default {
       const diff = Math.abs(today - date);
       const diffYears = Math.ceil(diff / (1000 * 3600 * 24 * 365.25));
       
-      return Math.floor(diffYears).toString + " ans"
+      return Math.floor(diffYears).toString() + " ans"
     },
     editButton(){
       this.$emit('update:modify');
@@ -117,12 +117,53 @@ export default {
     },
     async createPatient(){
       if(this.modify == false){
-        await axios.post('/api/patient', this.formData).then((r)=>{
-          this.$emit('create:finish', r.data.lastId);
+        await axios.post('patients', {
+          "nom" : this.formData.nom,
+          "prenom": this.formData.prenom,
+          "date_naissance": this.formData.date_naissance,
+          "lieu_de_naissance": this.formData.lieu_de_naissance,
+          "num_secu": this.formData.num_secu,
+          "numéro_mutuelle": this.formData.num_mutuelle,
+          "nom_mutuelle": this.formData.nom_mutuelle,
+          "nom_contact": this.formData.nom_contact,
+          "prenom_contact": this.formData.prenom_contact,
+          "num_contact": this.formData.num_contact,
+          "antecedants": this.formData.antecedants,
+          "allergies": this.formData.allergie,
+          "adresse": this.formData.adresse,
+          "code_postal": this.formData.code_postal,
+          "ville": this.formData.ville,
+          "etat": this.formData.etat,
+          "pays": this.formData.pays,
+          "num_telephone": this.formData.num_telephone,
+          "email": this.formData.email
+        }).then((r)=>{
+          this.$emit('create:finish', r.data._id);
         })
       }else{
-        await axios.patch(`/api/patient/${this.data.id}`, this.formData).then(()=>{
-          this.$emit('create:finish', this.data.id);
+        await axios.put(`/patients/${this.data._id}`, {
+          "nom" : this.formData.nom,
+          "prenom": this.formData.prenom,
+          "date_naissance": this.formData.date_naissance,
+          "lieu_de_naissance": this.formData.lieu_de_naissance,
+          "num_secu": this.formData.num_secu,
+          "numéro_mutuelle": this.formData.num_mutuelle,
+          "nom_mutuelle": this.formData.nom_mutuelle,
+          "nom_contact": this.formData.nom_contact,
+          "prenom_contact": this.formData.prenom_contact,
+          "num_contact": this.formData.num_contact,
+          "antecedants": this.formData.antecedants,
+          "allergies": this.formData.allergie,
+          "adresse": this.formData.adresse,
+          "code_postal": this.formData.code_postal,
+          "ville": this.formData.ville,
+          "etat": this.formData.etat,
+          "pays": this.formData.pays,
+          "num_telephone": this.formData.num_telephone,
+          "email": this.formData.email
+        }
+        ).then((r)=>{
+          this.$emit('create:finish', r.data._id);
         });
       }
     }
@@ -143,7 +184,7 @@ export default {
         if (this.create) {
           this.formData = {};
         } else {
-          this.formData = newValue;
+          this.formData = newValue ? newValue  : {};
         }
       },
       immediate: true

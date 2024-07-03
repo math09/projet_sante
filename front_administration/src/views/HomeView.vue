@@ -35,19 +35,17 @@ export default {
   methods: {
     async searchInDb() {
       if (this.search.length >= 2) {
-        await axios.get(`/api/patient/search/${this.search}`).then((response) => {
+        await axios.get(`/patients/search/${this.search}`).then((response) => {
           this.persons = response.data;
         });
       }
     },
     async onRowSelected(index) {
+      console.log(index);
       this.selectedRow = index;
       this.modifyInfo = false;
       this.createMode = false;
-
-      await axios.get(`/api/patient/${this.persons[this.selectedRow].id}`).then((response) => {
-        this.personSelected = response.data;
-      });
+      this.personSelected = this.persons[this.selectedRow];
     },
     sortTable() {
       if (this.sortBy === 'nom') {
@@ -61,7 +59,20 @@ export default {
     newButton() {
       this.selectedRow = null;
       this.createMode = true;
+    },
+    async finishCreate(id){
+      await this.getPatient();
+      console.log(id);
+      await this.onRowSelected(this.persons.indexOf(this.persons.find((e) => e._id = id)));
+    },
+    async getPatient(){
+      await axios.get("/patients").then((data) => {
+      this.persons = data.data;
+    })
     }
+  },
+  async mounted(){
+    await this.getPatient()
   },
   watch: {
     sortBy() {
@@ -101,7 +112,7 @@ export default {
       </div>
       <div class="h-full overflow-auto">
         <InfoComponent :data="personSelected" @update:modify="modifyInfo = true" :modify="modifyInfo"
-          :create="createMode" @create:finish="onRowSelected"/>
+          :create="createMode" @create:finish="finishCreate"/>
       </div>
     </div>
 
