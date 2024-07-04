@@ -94,7 +94,7 @@ def login_administration():
         token = jwt.encode(
             {
                 'email': email,
-                'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=30)
+                'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
             },
             Config.SECRET_KEY,
             algorithm='HS256'

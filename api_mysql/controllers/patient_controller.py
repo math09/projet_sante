@@ -1,5 +1,6 @@
 from models.patient import Patient
 from app import db
+import datetime
 
 def get_all_patients():
     return Patient.query.all()
@@ -12,6 +13,7 @@ def get_patient_by_value(value):
 
 def create_patient(data):
     new_patient = Patient(**data)
+    new_patient.date_creation = datetime.datetime.now(datetime.timezone.utc)
     db.session.add(new_patient)
     db.session.commit()
     return new_patient
@@ -20,6 +22,7 @@ def update_patient(num_secu, data):
     patient = Patient.query.get(num_secu)
     for key, value in data.items():
         setattr(patient, key, value)
+    patient.date_modification = datetime.datetime.now(datetime.timezone.utc)
     db.session.commit()
     return patient
 

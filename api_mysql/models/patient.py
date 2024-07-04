@@ -8,6 +8,7 @@ class Patient(db.Model):
     prenom = Column(String(100), nullable=False)
     nom = Column(String(100), nullable=False)
     date_creation = Column(DateTime, nullable=False)
+    date_modification = Column(DateTime)
     date_naissance = Column(DateTime, nullable=False)
     age = Column(Integer)
     lieu_de_naissance = Column(String(100))
@@ -25,10 +26,6 @@ class Patient(db.Model):
     pays = Column(String(100))
     num_telephone = Column(String(11))
     email = Column(String(255))
-    examens = relationship("Examen", backref="patient")
-    hospitalisations = relationship("Hospitalisation", backref="patient")
-    constantes = relationship("Constante", backref="patient")
-    prescriptions = relationship("Prescription", backref="patient")
 
     def to_dict(self):
         return {
@@ -36,6 +33,7 @@ class Patient(db.Model):
             'prenom': self.prenom,
             'nom': self.nom,
             'date_creation': self.date_creation.isoformat(),
+            'date_modification': self.date_modification.isoformat() if self.date_modification else None,
             'date_naissance': self.date_naissance.isoformat(),
             'age': self.age,
             'lieu_de_naissance': self.lieu_de_naissance,
@@ -53,8 +51,4 @@ class Patient(db.Model):
             'pays': self.pays,
             'num_telephone': self.num_telephone,
             'email': self.email,
-            'examens': [examen.to_dict() for examen in self.examens],
-            'hospitalisations': [hospitalisation.to_dict() for hospitalisation in self.hospitalisations],
-            'constantes': [constante.to_dict() for constante in self.constantes],
-            'prescriptions': [prescription.to_dict() for prescription in self.prescriptions]
         }
