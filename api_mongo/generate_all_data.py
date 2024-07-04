@@ -27,7 +27,7 @@ def generate_patients(num_records):
             'nom_mutuelle': fake.company(),
             'nom_contact': fake.last_name(),
             'prenom_contact': fake.first_name(),
-            'num_contact': fake.phone_number(),
+            'num_contact': fake.random_number(digits=11, fix_len=True),
             'antecedants': fake.text(),
             'allergies': fake.text(),
             'adresse': fake.street_address(),
