@@ -1,9 +1,10 @@
 from models.constante import Constante
 from app import db
+from sqlalchemy import asc
 import datetime
 
 def get_all_constantes():
-    return Constante.query.all()
+    return Constante.query.order_by(asc(Constante.date_releve)).all()
 
 def get_constante_by_id(id_constante):
     return Constante.query.get(id_constante)
