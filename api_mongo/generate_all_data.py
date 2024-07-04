@@ -35,7 +35,7 @@ def generate_patients(num_records):
             'ville': fake.city(),
             'etat': fake.state(),
             'pays': fake.country(),
-            'num_telephone': fake.phone_number(),
+            'num_telephone': fake.random_number(digits=11, fix_len=True),
             'email': fake.email()
         }
         patients.append(patient)
