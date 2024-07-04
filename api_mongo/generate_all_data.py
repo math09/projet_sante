@@ -27,7 +27,7 @@ def generate_patients(num_records):
             'nom_mutuelle': fake.company(),
             'nom_contact': fake.last_name(),
             'prenom_contact': fake.first_name(),
-            'num_contact': fake.random_number(digits=11, fix_len=True),
+            'num_contact': fake.random_number(digits=10, fix_len=True),
             'antecedants': fake.text(),
             'allergies': fake.text(),
             'adresse': fake.street_address(),
@@ -35,7 +35,7 @@ def generate_patients(num_records):
             'ville': fake.city(),
             'etat': fake.state(),
             'pays': fake.country(),
-            'num_telephone': fake.random_number(digits=11, fix_len=True),
+            'num_telephone': fake.random_number(digits=10, fix_len=True),
             'email': fake.email()
         }
         patients.append(patient)
@@ -53,7 +53,7 @@ def generate_administration(num_records):
             'date_creation': fake.date_time_between(start_date='-2y', end_date='now').isoformat(),
             'isActif': fake.boolean(),
             'email': fake.email(),
-            'num_telephone': fake.random_number(digits=11, fix_len=True),
+            'num_telephone': fake.random_number(digits=10, fix_len=True),
         }
         admins.append(patient)
     return admins
