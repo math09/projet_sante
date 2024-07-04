@@ -3,6 +3,9 @@ export default {
   methods: {
     goToLogin() {
       this.$router.push({ name: 'login-medecin' });
+    },
+    goToOtherSite(){
+      window.location.href = 'http://localhost:8080/login/administration';
     }
   }
 };
@@ -15,7 +18,7 @@ export default {
     </div>
 
     <div class="flex justify-center gap-20 mt-20 sm:flex-row flex-col">
-      <button class="flex flex-col justify-center w-52 h-52 text-center shadow-2xl rounded-2xl sm:w-80 sm:h-80 bg-neutral-100">
+      <button class="flex flex-col justify-center w-52 h-52 text-center shadow-2xl rounded-2xl sm:w-80 sm:h-80 bg-neutral-100" @click="goToOtherSite">
         <div class="w-full h-full  bg-gradient-to-r from-teal-500 to-teal-300 rounded-t-2xl"></div>
         <h2 class="font-bold text-xl sm:text-2xl p-4">Administration</h2>
       </button>

@@ -59,6 +59,7 @@ export default {
     newButton() {
       this.selectedRow = null;
       this.createMode = true;
+      this.personSelected = null;
     },
     async finishCreate(id){
       await this.getPatient();
