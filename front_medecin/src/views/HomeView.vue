@@ -126,10 +126,9 @@ export default {
 
 <template>
   <BaseLayout> 
-    <div class="grid h-full grid-cols-5 gap-6">
-      <div class="flex-grow col">
+    <div class="grid h-full grid-cols-5 gap-6 overflow-hidden">
         <ListPatient :persons="persons" @person_selected="onPatientSelected"/>
-      </div>
+      
 
       <div class="col-span-4 overflow-hidden bg-gradient-to-tr">
         <div class="relative flex flex-col h-full gap-4 p-4 rounded-md bg-mercury-200">

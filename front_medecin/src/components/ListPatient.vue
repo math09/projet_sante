@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full p-5 rounded-3xl bg-white">
+  <div class="h-full p-5 rounded-3xl bg-white overflow-auto">
     <div class="w-full gap-5">
       <InputComponent id="search" label="Rechercher" type="text" v-model="search"
         input-class="w-full h-4 border-gray-200 shadow-none bg-neutral-200 focus:border-gray-300">

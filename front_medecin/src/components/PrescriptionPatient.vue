@@ -58,7 +58,7 @@ export default {
 <template>
   <BaseLayout>
     <div class="grid h-full grid-cols-5 gap-3">
-      <div class="flex-grow p-2 bg-white rounded-lg">
+      <div class="flex-grow p-2 bg-white rounded-lg overflow-auto">
         <div class="h-full">
           <div class="flex w-full">
             <InputComponent id="search" label="Rechercher" type="text" v-model="search"
